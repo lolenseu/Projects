@@ -25,15 +25,13 @@ if (isset($_GET['id']) && isset($_POST['currentpassword'])) {
             $deleteStmt = $conn->prepare($deleteSql);
             $deleteStmt->bind_param("i", $userId);
             $deleteStmt->execute();
-            
-            // Reset the AUTO_INCREMENT value to the last deleted ID
-            $resetSql = "ALTER TABLE users_data AUTO_INCREMENT = ?";
-            $resetStmt = $conn->prepare($resetSql);
-            $resetStmt->bind_param("i", $userId);
-            $resetStmt->execute();
 
-            // Success message
-            $message = 'Your account has been successfully deleted.';
+            // Execute the statement
+            if ($stmt->execute()) {
+              $message = 'Your account has been successfully deleted.';
+            } else {
+                $message = "Error: " . $conn->error;
+            }
         } else {
             $message = 'Incorrect password. Please try again.';
         }
@@ -51,7 +49,7 @@ if (isset($_GET['id']) && isset($_POST['currentpassword'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Delete</title>
+  <title>Delete Status</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" href="../css/header.css">
   <link rel="stylesheet" href="../css/delete_handler.css">

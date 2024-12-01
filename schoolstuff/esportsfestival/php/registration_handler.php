@@ -28,6 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hash the password
         $userHashedPassword = password_hash($userPassword, PASSWORD_DEFAULT);
 
+        // Reset AUTO_INCREMENT to avoid large gaps in IDs
+        $resetSql = "SELECT MAX(id) AS max_id FROM users_data";
+        $resetResult = $conn->query($resetSql);
+        if ($resetRow = $resetResult->fetch_assoc()) {
+          $newAutoIncrement = $resetRow['max_id'] + 1;
+          $conn->query("ALTER TABLE users_data AUTO_INCREMENT = $newAutoIncrement");
+        }
+
         // Prepare the insert statement
         $sql = "INSERT INTO users_data (username, email, password, age, address, role) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
