@@ -3,7 +3,8 @@
 include('connection.php');
 
 // Error flag
-$message = '';
+$messageok = '';
+$messagebad = '';
 
 if (isset($_GET['id']) && isset($_POST['currentpassword'])) {
     $userId = $_GET['id'];
@@ -28,18 +29,18 @@ if (isset($_GET['id']) && isset($_POST['currentpassword'])) {
 
             // Execute the statement
             if ($stmt->execute()) {
-              $message = 'Your account has been successfully deleted.';
+              $messageok = 'Your account has been successfully deleted.';
             } else {
-                $message = "Error: " . $conn->error;
+                $messageok = "Error: " . $conn->error;
             }
         } else {
-            $message = 'Incorrect password. Please try again.';
+            $messagebad = 'Incorrect password. Please try again.';
         }
     } else {
-        $message = 'User not found. Please check the user ID.';
+        $messagebad = 'User not found. Please check the user ID.';
     }
 } else {
-    $message = 'User ID or password not provided.';
+    $messagebad = 'User ID or password not provided.';
 }
 ?>
 
@@ -78,10 +79,13 @@ if (isset($_GET['id']) && isset($_POST['currentpassword'])) {
   <div class="content">
     <div class="content-box">
     <h2>Delete Status</h2>
-      <?php if ($message): ?>
-        <p><?php echo $message; ?></p>
+      <?php if ($messageok): ?>
+        <p><?php echo $messageok; ?></p>
+        <a href="../index.html">Go back to Home</a>
+      <?php elseif ($messagebad): ?>
+        <p><?php echo $messagebad; ?></p>
+        <a href="javascript:history.back()">Go back to Profile</a>
       <?php endif; ?>
-      <a href="../index.html">Go back to Home</a>
     </div>
   </div>
 
