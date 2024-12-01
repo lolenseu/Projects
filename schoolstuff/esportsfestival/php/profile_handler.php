@@ -86,11 +86,11 @@ if (isset($_GET['id'])) {
             </div>
             <div class="form-group">
               <label for="username">Username:</label>
-              <input type="username" id="username" name="username" value="<?php echo $username; ?>">
+              <input type="username" id="username" name="username" value="<?php echo $username; ?>" placeholder="Username">
             </div>
             <div class="form-group">
               <label for="email">Email:</label>
-              <input type="email" id="email" name="email" value="<?php echo $email; ?>">
+              <input type="email" id="email" name="email" value="<?php echo $email; ?>" placeholder="Email">
             </div>
             <div class="form-group">
               <label for="password">Password:</label>
@@ -98,19 +98,19 @@ if (isset($_GET['id'])) {
             </div>
             <div class="form-group">
               <label for="contact">Contact:</label>
-              <input type="tel" id="contact" name="contact" value="<?php echo $contact; ?>">
+              <input type="tel" id="contact" name="contact" value="<?php echo $contact; ?>" placeholder="Contact*">
             </div>
             <div class="form-group">
               <label for="address">Address:</label>
-              <input type="address" id="address" name="address" value="<?php echo $address; ?>">
+              <input type="address" id="address" name="address" value="<?php echo $address; ?>" placeholder="Address">
             </div>
             <div class="form-group">
               <label for="age">Age:</label>
-              <input type="number" id="age" name="age" value="<?php echo $age; ?>" min="10" max="60" maxlength="2">
+              <input type="number" id="age" name="age" value="<?php echo $age; ?>" min="10" max="60" maxlength="2" placeholder="Age">
             </div>
             <div class="form-group">
               <label for="birthday">B-day:</label>
-              <input type="date" id="birthday" name="birthday" value="<?php echo $birthday; ?>">
+              <input type="date" id="birthday" name="birthday" value="<?php echo $birthday; ?>" placeholder="Birthday">
             </div>
             <div class="form-group">
               <label for="role">Select a Role:</label>
