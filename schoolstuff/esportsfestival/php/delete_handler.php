@@ -2,25 +2,28 @@
 // Database connection
 include('connection.php');
 
-// Error flag
+// Response message
 $messageok = '';
 $messagebad = '';
 
+// Check if the user is logged in and the 'id' and 'currentpassword' are set
 if (isset($_GET['id']) && isset($_POST['currentpassword'])) {
     $userId = $_GET['id'];
     $currentPassword = $_POST['currentpassword'];
 
-    // Fetch user data from the database based on the id
+    // Fetch the user's current details from the database
     $sql = "SELECT * FROM users_data WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $userId);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Check if the user exists and verify the password
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
+
+        // Check if the entered current password matches the stored password
         if (password_verify($currentPassword, $user['password'])) {
+
             // Delete the user if password is correct
             $deleteSql = "DELETE FROM users_data WHERE id = ?";
             $deleteStmt = $conn->prepare($deleteSql);
@@ -31,7 +34,7 @@ if (isset($_GET['id']) && isset($_POST['currentpassword'])) {
             if ($stmt->execute()) {
               $messageok = 'Your account has been successfully deleted.';
             } else {
-                $messageok = "Error: " . $conn->error;
+                $messagebad = "Error: " . $conn->error;
             }
         } else {
             $messagebad = 'Incorrect password. Please try again.';

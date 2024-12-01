@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
 
         // Extract user details
         // Profile image (check if available or provide a default)
-        $profile_image = (!empty($user['picture'])) ? 'data:image/jpeg;base64,' . base64_encode($user['picture']) : '../img/nopic.jpg';
+        $profile_image = (!empty($user['image'])) ? 'data:image/jpeg;base64,' . base64_encode($user['image']) : '../img/nopic.jpg';
 
         $username = htmlspecialchars($user['username']);
         $role = htmlspecialchars($user['role']);
@@ -79,7 +79,7 @@ if (isset($_GET['id'])) {
 
         <!-- Profile Edit -->
         <div popover id="profile-edit" class="popover-edit">
-          <form action="" method="POST">
+          <form action="update_handler.php?id=<?php echo $userId; ?>" method="POST" enctype="multipart/form-data">>
             <div class="form-group">
               <label for="image">Profile Image:</label>
               <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png">

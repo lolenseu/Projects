@@ -2,7 +2,7 @@
 // Database connection
 include('connection.php');
 
-// To store the response message
+// Response message
 $message = ""; 
 
 // Check if the form is submitted
