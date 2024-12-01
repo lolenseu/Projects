@@ -1,3 +1,39 @@
+<?php
+// Database connection
+include('connection.php');
+
+// Check if the 'id' parameter is set in the URL
+if (isset($_GET['id'])) {
+    $userId = $_GET['id'];
+
+    // Fetch user data from the database based on the id
+    $sql = "SELECT * FROM users_data WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    // Check if user exists
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+
+        // Extract user details
+        // Profile image (check if available or provide a default)
+        $profile_image = (!empty($user['picture'])) ? 'data:image/jpeg;base64,' . base64_encode($user['picture']) : '../img/nopic.jpg';
+
+        $username = htmlspecialchars($user['username']);
+        $role = htmlspecialchars($user['role']);
+        $email = htmlspecialchars($user['email']);
+        $contact = htmlspecialchars($user['contact']);
+        $birthday = htmlspecialchars($user['birthday']);
+        $age = htmlspecialchars($user['age']);
+        $address = htmlspecialchars($user['address']);
+        $created_at = htmlspecialchars($user['created_at']);
+        
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +79,7 @@
 
         <!-- Profile Edit -->
         <div popover id="profile-edit" class="popover-edit">
-          <form action="" method="post">
+          <form action="" method="POST">
             <div class="form-group">
               <label for="image">Profile Image:</label>
               <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png">
@@ -91,20 +127,20 @@
               <label for="currentpassword">Please enter your current password to confirm.</label>
               <input type="password" id="currentpassword" name="currentpassword" placeholder="Current Password*">
             </div>
-            <button class="submit">Save</button>
-            <button popovertarget="profile-edit" popovertargetaction="hide" class="edit-close">Close</button>
+            <button type="submit" class="submit">Save</button>
+            <button type="button" popovertarget="profile-edit" popovertargetaction="hide" class="edit-close">Close</button>
           </form>
         </div>
 
         <!-- Profile Delete -->
         <div popover id="profile-delete" class="popover-delete">
-          <form action="" method="post">
+          <form action="delete_handler.php?id=<?php echo $userId; ?>" method="POST">
             <div class="form-group">
-              <label for="currentpassword">In order to delete your account, please enter your current password to confirm!</label>
+              <label for="currentpassword">In order to delete your account, please enter your current password!</label>
               <input type="password" id="currentpassword" name="currentpassword" placeholder="Current Password*">
             </div>
             <button type="submit" class="submit">Confirm</button>
-            <button type="button "popovertarget="profile-delete" popovertargetaction="hide" class="delete-close">Close</button>
+            <button type="button" popovertarget="profile-delete" popovertargetaction="hide" class="delete-close">Close</button>
           </form>
         </div>
       </div>

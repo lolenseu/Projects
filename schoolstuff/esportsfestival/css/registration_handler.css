@@ -41,7 +41,7 @@
 .content-box a {
   text-align: center;
   margin: 15px 15px;
-  padding: 10px 40px;
+  padding: 15px 30px;
   text-decoration: none;
   font-size: 18px; 
   line-height: 50px;
@@ -53,6 +53,7 @@
 }
 
 .content-box a:hover {
+  transform: scale(1.1);
   background-color: #ff00ff;
   box-shadow: 0 0 25px #ff00ff; 
 }
