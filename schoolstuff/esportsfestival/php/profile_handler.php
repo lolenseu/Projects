@@ -98,7 +98,7 @@ if (isset($_GET['id'])) {
             </div>
             <div class="form-group">
               <label for="contact">Contact:</label>
-              <input type="tel" id="contact" name="contact" value="<?php echo $contact; ?>" placeholder="Contact*">
+              <input type="tel" id="contact" name="contact" value="<?php echo $contact; ?>" placeholder="Contact">
             </div>
             <div class="form-group">
               <label for="address">Address:</label>
