@@ -1,11 +1,14 @@
 /* Video Style */
-.video {
-  height: 100%;
-  width: 100%;
+.gif-container {
+  margin: 0;
+  height: auto;
+  width: auto;
   z-index: -1;
-  margin-top: -100vh;
-  position: fixed;
-  top: 0;
+}
+
+.gif-container img {
+  height: 1080px;
+  width: 1920px;
 }
 
 /* Center logo */

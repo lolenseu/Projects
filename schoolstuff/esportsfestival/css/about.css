@@ -19,7 +19,7 @@
 }
 
 .user-counter-content {
-  height: 124px;
+  height: 132px;
   width: 650px;
   padding: 0 45px;
   display: flex;
@@ -35,7 +35,7 @@
 }
 
 .user-counter-content:hover {
-  height: 135px;
+  height: 145px;
   width: 680px;
   transition: .8s;
 }
