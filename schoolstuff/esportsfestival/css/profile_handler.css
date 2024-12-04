@@ -34,7 +34,7 @@
   padding: 0;
 }
 
-.profile-container img {
+.profile-container .profile-image {
   height: 320px;
   width: 320px;
   border-radius: 100%;
@@ -43,7 +43,7 @@
   transition: .8s;
 }
 
-.profile-container img:hover{
+.profile-container .profile-image:hover{
   height: 420px;
   width: 420px;
   border: 0;
@@ -58,6 +58,12 @@
   text-transform: uppercase;
   text-shadow: 0 0 25px #ffffff;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.verification-icon {
+  margin: 0 5px;
+  height: 22px;
+  width: 22px;
 }
 
 

@@ -80,6 +80,10 @@ if (isset($_GET['id']) && isset($_POST['currentpassword'])) {
                 $imageData = file_get_contents($newImage['tmp_name']);
                 $updateQuery[] = "image = ?";
                 $updateParams[] = $imageData; // Add the binary data of the image
+    
+                // Update verification status to "Verified"
+                $updateQuery[] = "verification_status = ?";
+                $updateParams[] = 'Verified'; // Set the verification status to "Verified"
             }
 
             // If there are changes, proceed with the update

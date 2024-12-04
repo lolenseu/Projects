@@ -20,6 +20,7 @@ if (isset($_GET['id'])) {
         // Extract user details
         // Profile image (check if available or provide a default)
         $profile_image = (!empty($user['image'])) ? 'data:image/jpeg;base64,' . base64_encode($user['image']) : '../img/nopic.jpg';
+        $verification_icon = (!empty($user['verification_status'])) ? '../img/check.png': '../img/x.png';
 
         $username = htmlspecialchars($user['username']);
         $role = htmlspecialchars($user['role']);
@@ -70,8 +71,8 @@ if (isset($_GET['id'])) {
     <div class="content-box">
       <h2>PROFILE</h2>
       <div class="profile-container">
-        <img src="<?php echo $profile_image; ?>" alt="Profile Image">
-        <h2><?php echo $username; ?></h2>
+        <img class="profile-image" src="<?php echo $profile_image; ?>" alt="Profile Image">
+        <h2><?php echo $username; ?><img class="verification-icon" src="<?php echo $verification_icon; ?>" alt="Verification Icon"></h2>
         <div class="profile-button">
           <button popovertarget="profile-edit" class="edit-button">Edit</button>
           <button popovertarget="profile-delete" class="delete-button">Delete</button>
