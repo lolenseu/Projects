@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
         // Extract user details
         // Profile image (check if available or provide a default)
         $profile_image = (!empty($user['image'])) ? 'data:image/jpeg;base64,' . base64_encode($user['image']) : '../img/nopic.jpg';
-        $verification_icon = (!empty($user['verification_status'])) ? '../img/check.png': '../img/x.png';
+        $verification_icon = ($user['verification_status'] === 'Verified') ? '../img/check.png' : '../img/x.png';
 
         $username = htmlspecialchars($user['username']);
         $role = htmlspecialchars($user['role']);

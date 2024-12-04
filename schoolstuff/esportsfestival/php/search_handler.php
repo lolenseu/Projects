@@ -11,9 +11,9 @@ if (isset($_GET['search'])) {
     $searchQuery = $conn->real_escape_string($_GET['search']);
 
     // Query the database
-    $sql = "SELECT id, username, role 
+    $sql = "SELECT id, username, email, role
             FROM users_data 
-            WHERE username LIKE '%$searchQuery%' OR role LIKE '%$searchQuery%'
+            WHERE username LIKE '%$searchQuery%' OR email LIKE '%$searchQuery%' OR role LIKE '%$searchQuery%'
             ORDER BY username ASC";
 
     $result = $conn->query($sql);
