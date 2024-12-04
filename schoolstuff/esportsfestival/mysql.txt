@@ -68,3 +68,10 @@ VALUES
 ('Kalliope', 'kalliope@gmail.com', '$2y$10$2D414MPNXNAfd77VVN/rHuMfh25F.jN7waFRqE3.ttrUBlMl48LI6', '0987654321', '1983-04-15', 41, '461 Pine Ct, Star City, CA', 'Player', NULL, '2023-02-20 18:50:45'),
 ('Daphne', 'daphne@gmail.com', '$2y$10$2D414MPNXNAfd77VVN/rHuMfh25F.jN7waFRqE3.ttrUBlMl48LI6', '0987654321', '1995-10-02', 29, '471 Cedar Ln, Coast City, OR', 'User', NULL, '2022-05-28 14:20:10'),
 ('Sasha', 'sasha@gmail.com', '$2y$10$2D414MPNXNAfd77VVN/rHuMfh25F.jN7waFRqE3.ttrUBlMl48LI6', '0987654321', '1981-07-31', 43, '481 Redwood Blvd, Riverdale, KY', 'Sponsor', NULL, '2023-10-03 15:30:00');
+
+CREATE TABLE web_views (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    views INT DEFAULT 0
+);
+
+INSERT INTO web_views (views) VALUES (0);

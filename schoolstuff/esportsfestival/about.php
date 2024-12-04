@@ -1,3 +1,29 @@
+<?php
+// Database connection
+include('php/connection.php');
+
+// Increment view count in `web_views`
+$sql_increment_view = "UPDATE web_views SET views = views + 1 WHERE id = 1";
+$conn->query($sql_increment_view);
+
+// Fetch updated views count
+$sql_get_views = "SELECT views FROM web_views WHERE id = 1";
+$result = $conn->query($sql_get_views);
+$views_count = $result->fetch_assoc()['views'] ?? 0;
+
+// Fetch total users
+$sql_get_users_count = "SELECT COUNT(*) AS total_users FROM users_data";
+$result = $conn->query($sql_get_users_count);
+$total_users = $result->fetch_assoc()['total_users'] ?? 0;
+
+// Fetch total verified users
+$sql_get_verified_users = "SELECT COUNT(*) AS verified_users FROM users_data WHERE image IS NOT NULL AND LENGTH(image) > 0";
+$result = $conn->query($sql_get_verified_users);
+$verified_users = $result->fetch_assoc()['verified_users'] ?? 0;
+
+// Close the database connection
+$conn->close();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +33,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>About</title>
   <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/style2.css">
+  <link rel="stylesheet" href="css/about.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="icon" href="img/icon.png">
 </head>
@@ -17,9 +43,9 @@
     <a href="#" class="logo"><img src="img/2024.png">ESports<br>Festival</a>
     <div class="header-right">
       <a href="index.html">Home</a>
-      <a class="active" href="index2.html">About</a>
-      <a href="index3.html">Register</a>
-      <a href="index4.html">ContactUs</a>
+      <a class="active" href="about.php">About</a>
+      <a href="register.html">Register</a>
+      <a href="contact.html">ContactUs</a>
     </div><br>
     <div class="searchbox">
       <form action="php/search_handler.php" method="GET">
@@ -31,6 +57,13 @@
 
   <div class="intro-img">
     <img src="img/gamplay.jpg" alt="">
+    <div class="user-counter">
+      <div class="user-counter-content ani">
+        <p>Users<img src="img/user.png" alt=""> <?php echo $total_users; ?></p>
+        <p>Verified<img src="img/check.png" alt=""> <?php echo $verified_users; ?></p>
+        <p>Visitor<img src="img/eye.png" alt=""> <?php echo $views_count; ?></p>
+      </div>
+    </div>
   </div>
   
   <!-- Content -->

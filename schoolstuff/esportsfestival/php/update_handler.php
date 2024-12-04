@@ -128,9 +128,9 @@ if (isset($_GET['id']) && isset($_POST['currentpassword'])) {
     <a href="#" class="logo"><img src="../img/2024.png">ESports<br>Festival</a>
     <div class="header-right">
       <a href="../index.html">Home</a>
-      <a href="../index2.html">About</a>
-      <a href="../index3.html">Register</a>
-      <a href="../index4.html">ContactUs</a>
+      <a href="../about.php">About</a>
+      <a href="../register.html">Register</a>
+      <a href="../contact.html">ContactUs</a>
     </div><br>
     <div class="searchbox">
       <form action="search_handler.php" method="GET">
