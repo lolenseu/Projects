@@ -13,7 +13,7 @@ CREATE TABLE users_data (
     address TEXT NULL,
     role VARCHAR(50) DEFAULT 'User',
     image LONGBLOB NULL,
-    verification_status VARCHAR(50) NULL,
+    verification_status VARCHAR(50) DEFAULT 'NotVerified',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
