@@ -61,7 +61,7 @@ $conn->close();
       <div class="user-counter-content ani">
         <p>Users<img src="img/user.png" alt=""> <?php echo $total_users; ?></p>
         <p>Verified<img src="img/check.png" alt=""> <?php echo $verified_users; ?></p>
-        <p>Visitor<img src="img/eye.png" alt=""> <?php echo $views_count; ?></p>
+        <p>Visitors<img src="img/eye.png" alt=""> <?php echo $views_count; ?></p>
       </div>
     </div>
   </div>
