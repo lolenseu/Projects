@@ -25,6 +25,7 @@
 
 .contact-info {
   margin-top: 30px;
+  margin-bottom: 18%;
 }
 
 .contact-info div {
@@ -68,6 +69,86 @@
   line-height: 1.6;
   text-shadow: 0 0 10px #ffffff;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.second-content {
+  margin: 0 5%;
+  padding-top: 20px;
+  text-align: center;
+  border-top: 4px solid transparent;
+  border-image: linear-gradient(to right, #6a0dad, #ff7e5f);
+  border-image-slice: 1;
+}
+
+.second-content label {
+  display: block;
+  margin-bottom: 5px;
+  color: white;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.second-content input {
+  border: none;
+  outline: none;
+  color: black;
+  margin: 16px;
+  padding: 15px 20px;
+  width: 40%;
+  background-color: white;
+  border-radius: 25px;
+  border: 1px solid black;
+  font-size: 16px;
+  font-family: "Lucida Console", "Courier New", monospace;
+  transition: .3s;
+}
+
+.second-content input:hover {  
+  width: 50%;
+  transition: .8s;
+  border: 1px solid #ff007f;
+  box-shadow: 0 0 25px #ff00ff;
+}
+
+.second-content textarea {
+  border: none;
+  outline: none;
+  color: black;
+  margin: 16px;
+  padding: 15px 20px;
+  width: 40%;
+  background-color: white;
+  border-radius: 25px;
+  border: 1px solid black;
+  font-size: 16px;
+  font-family: "Lucida Console", "Courier New", monospace;
+  transition: .3s;
+}
+
+.second-content textarea:hover {
+  width: 50%;
+  transition: .8s;
+  border: 1px solid #ff007f;
+  box-shadow: 0 0 25px #ff00ff;
+}
+
+.content button {
+  margin-top: 5%;
+  padding: 15px 30px;
+  width: 24%;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: #ff00ff;
+  font-family: "Lucida Console", "Courier New", monospace;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content button:hover {
+  transform: scale(1.1);
+  background-color: #ff00ff;
+  box-shadow: 0 0 25px #ff00ff; 
 }
 
 
