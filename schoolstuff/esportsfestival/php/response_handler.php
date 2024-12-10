@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <a href="../index.html">Home</a>
       <a href="../about.php">About</a>
       <a href="../register.html">Register</a>
-      <a href="../contact.html">Contact Us</a>
+      <a href="../contact.html">ContactUs</a>
     </div><br>
     <div class="searchbox">
       <form action="search_handler.php" method="GET">
