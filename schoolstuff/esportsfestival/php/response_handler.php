@@ -12,20 +12,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userEmail = $_POST['email'] ?? '';
     $userMessage = $_POST['message'] ?? '';
 
-    // Validate required fields
-    if (empty($userName) || empty($userEmail) || empty($userMessage)) {
-        $message = "All fields are required. Please fill out the form completely.";
-    } else {
-        try {
-            // Insert the message into the database
-            $sql = "INSERT INTO users_response (username, email, message) VALUES (?, ?, ?)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([$userName, $userEmail, $userMessage]);
+    // Reset AUTO_INCREMENT to avoid large gaps in IDs
+    $resetSql = "SELECT MAX(id) AS max_id FROM users_response";
+    $resetResult = $conn->query($resetSql);
+    if ($resetRow = $resetResult->fetch_assoc()) {
+      $newAutoIncrement = $resetRow['max_id'] + 1;
+      $conn->query("ALTER TABLE users_response AUTO_INCREMENT = $newAutoIncrement");
+    }
 
-            $message = "Thank you, " . htmlspecialchars($userName) . ". Your message has been submitted.";
-        } catch (PDOException $e) {
-            $message = "Failed to submit your message: " . $e->getMessage();
-        }
+    // Prepare and execute the SQL query to insert the data into the database
+    $sql = "INSERT INTO users_response (username, email, message) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $userName, $userEmail, $userMessage);
+            
+    // Execute the statement
+    if ($stmt->execute()) {
+        $message = "Thank you, " . htmlspecialchars($userName) . ". Your message has been submitted successfully!";
+    } else {
+        $message = "Failed to submit your message: " . $conn->error;
     }
 }
 ?>
@@ -50,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <a href="../index.html">Home</a>
       <a href="../about.php">About</a>
       <a href="../register.html">Register</a>
-      <a href="../contact.html">ContactUs</a>
+      <a href="../contact.html">Contact Us</a>
     </div><br>
     <div class="searchbox">
       <form action="search_handler.php" method="GET">
