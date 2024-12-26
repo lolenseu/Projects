@@ -1,0 +1,13 @@
+# Create a Tag
+git tag <tag_name>
+
+# View Tags
+git tag
+
+# Push Tags to Remote
+git push origin <tag_name>
+git push --tags       # Push all tags
+
+# Delete a Tag
+git tag -d <tag_name>
+git push origin --delete <tag_name>  # Delete remote tag

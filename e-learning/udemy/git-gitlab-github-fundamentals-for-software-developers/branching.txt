@@ -1,0 +1,15 @@
+# Create a New Branch
+git branch <branch_name>
+
+# Switch to a Branch
+git checkout <branch_name>
+
+# Create and Switch to a Branch
+git checkout -b <branch_name>
+
+# List All Branches
+git branch
+
+# Delete a Branch
+git branch -d <branch_name>        # Safe delete (only merged branches)
+git branch -D <branch_name>        # Force delete

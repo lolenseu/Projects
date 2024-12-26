@@ -1,0 +1,13 @@
+# Check Repository Status
+git status
+
+# Add Files to Staging Area
+git add <file>         # Add a specific file
+git add .              # Add all changes in the current directory
+
+# Commit Changes
+git commit -m "Commit message"
+
+# View Commit History
+git log
+git log --oneline      # Simplified view

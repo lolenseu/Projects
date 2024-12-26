@@ -1,0 +1,11 @@
+# Unstage Files
+git reset <file>
+
+# Undo Last Commit (Keep Changes)
+git reset --soft HEAD~1
+
+# Undo Last Commit (Discard Changes)
+git reset --hard HEAD~1
+
+# Restore File to Last Commit
+git checkout -- <file>

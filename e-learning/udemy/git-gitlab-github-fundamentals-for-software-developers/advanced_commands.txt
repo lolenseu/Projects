@@ -1,0 +1,12 @@
+# Amend Last Commit
+git commit --amend -m "Updated commit message"
+
+# Squash Commits (Interactive Rebase)
+git rebase -i HEAD~n   # Replace 'n' with the number of commits to squash
+
+# Check Differences
+git diff               # View changes not staged
+git diff --staged      # View changes staged for commit
+
+# Clean Untracked Files
+git clean -f

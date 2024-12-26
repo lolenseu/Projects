@@ -1,0 +1,8 @@
+# View Commit Differences
+git show <commit_hash>
+
+# Blame for a File
+git blame <file>
+
+# Search Commit History
+git log --grep="keyword"

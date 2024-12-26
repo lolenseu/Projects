@@ -1,0 +1,5 @@
+# Merge Branches
+git merge <branch_name>
+
+# Rebase a Branch
+Rebase a Branch

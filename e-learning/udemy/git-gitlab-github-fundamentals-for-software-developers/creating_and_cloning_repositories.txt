@@ -1,0 +1,5 @@
+# Initialize a New Repository
+git init
+
+# Clone an Existing Repository
+git clone <repository_url>

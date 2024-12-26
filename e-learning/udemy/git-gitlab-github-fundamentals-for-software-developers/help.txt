@@ -1,0 +1,3 @@
+# View Help for a Command
+git help <command>
+git <command> --help

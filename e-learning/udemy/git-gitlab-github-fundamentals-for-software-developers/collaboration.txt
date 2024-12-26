@@ -1,0 +1,7 @@
+# Cherry-Pick a Commit
+git cherry-pick <commit_hash>
+
+# Resolve Merge Conflicts
+# Edit conflicting files manually
+git add <file>
+git commit -m "Resolve conflict"

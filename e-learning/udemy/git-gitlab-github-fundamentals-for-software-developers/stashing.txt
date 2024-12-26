@@ -1,0 +1,14 @@
+# Save Uncommitted Change
+git stash
+
+# View Stashed Changes
+git stash list
+
+# Apply Stashed Change
+git stash apply
+
+# Drop Stashed Changes
+git stash drop
+
+# Apply and Remove Stash
+git stash pop

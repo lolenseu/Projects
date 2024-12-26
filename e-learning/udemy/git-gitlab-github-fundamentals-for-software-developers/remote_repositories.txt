@@ -1,0 +1,14 @@
+# Add a Remote Repository
+git remote add origin <repository_url>
+
+# View Remote Repositories
+git remote -v
+
+# Fetch Updates from Remote
+git fetch
+
+# Pull Updates (Fetch + Merge)
+git pull origin <branch_name>
+
+# Push Changes to Remote
+git push origin <branch_name>
