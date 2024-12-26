@@ -1,0 +1,46 @@
+# Boolean Values and Conditionals
+True:			Boolean value, the opposite of False. Example: is_valid = True
+False:			Boolean value, the opposite of True. Example: is_empty = False
+if:			    Conditional statement. Example: if x > 5:
+elif:			Conditional statement for "else if". Example: if x > 5: elif x == 5:
+else:			Executes if the condition in "if" or "elif" is False. Example: if x > 5: else:
+not:			Logical NOT operator. Example: if not is_ready:
+and:			Logical AND operator, returns True if both conditions are True. Example: x > 5 and x < 10
+or:			    Logical OR operator. Example: if x < 5 or x > 10:
+
+# Loops
+for:			Looping construct. Example: for i in range(5):
+while:			Creates a loop that executes while a condition is True. Example: while x < 5:
+break:			Terminates the current loop. Example: for i in range(10): if i == 5: break
+continue:		Skips the rest of the current loop iteration. Example: for i in range(10): if i == 5: continue
+
+# Functions and Classes
+def:			Defines a function. Example: def my_function():
+return:			Returns a value from a function. Example: def add(a, b): return a + b
+lambda:			Defines an anonymous function. Example: square = lambda x: x ** 2
+class:			Defines a class. Example: class MyClass:
+
+# Exception Handling
+try:			Defines a block to test for exceptions. Example: try:
+except:			Handles exceptions in a try block. Example: try: except ValueError:
+finally:		Executes code regardless of exceptions. Example: try: finally:
+raise:			Raises an exception. Example: raise ValueError("Invalid input")
+assert:			Used for debugging to test conditions. Example: assert x > 0
+
+# Object and Variable Management
+del:			Deletes an object. Example: del my_list[0]
+global:			Declares a global variable. Example: global count
+nonlocal:		Declares a variable in the nearest enclosing scope. Example: nonlocal x
+
+# Modules and Imports
+import:			Imports a module. Example: import os
+from:			Specifies the module to import from. Example: from math import sqrt
+as:			    Used to create an alias. Example: import numpy as np
+
+# Special Keywords
+pass:			A null statement, does nothing. Example: def placeholder(): pass
+with:			Simplifies resource management. Example: with open("file.txt") as f:
+yield:			Used to return a generator. Example: def count(): yield 1
+is:			    Tests object identity. Example: if a is b:
+in:			    Tests membership in a collection. Example: if x in my_list:
+None:			Represents the absence of a value. Example: result = None
