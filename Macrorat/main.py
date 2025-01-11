@@ -55,17 +55,20 @@ def lootbox():
     # debug
     #cv.imshow('lootboxscreen', lootbox_screen)
     #cv.imshow('lootbox', _lootbox)
+    
+    for xitem in exclude_item_templates:
+        xtemplate_result = cv.matchTemplate(_lootbox, xitem, cv.TM_CCOEFF_NORMED)
+        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(xtemplate_result)
+        
+        if max_val >= match_threshold:
+            return None
 
     for item in item_template:
         template_result = cv.matchTemplate(_lootbox, item, cv.TM_CCOEFF_NORMED)
-        for xitem in exclude_item_templates:
-            if template_result == xitem:
-                break
-            else:
-                min_val, max_val, min_loc, max_loc = cv.minMaxLoc(template_result)
-        
+        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(template_result)
+                
         if stop_loot:
-            break
+            return None
 
         if max_val >= match_threshold:
             item_x, item_y = max_loc[0], max_loc[1]
@@ -74,7 +77,7 @@ def lootbox():
             item_bottom = min(item_y + 64, _lootbox.shape[0])
             
             if item_right >= _lootbox.shape[1] or item_bottom >= _lootbox.shape[0]:
-                break
+                return None
             
             else:
                 exclude_match_found = False
@@ -86,12 +89,12 @@ def lootbox():
 
                     if exclude_max_val >= match_threshold:
                         exclude_match_found = True
-                        break
+                        return None
 
                 if not exclude_match_found:
                     x, y = monitor2['left'] + item_x, monitor2['top'] + item_y
                     clicker(x, y, _lootbox.shape[1], _lootbox.shape[0])
-                    break
+                    return None
 
 
 # Variables
@@ -133,10 +136,10 @@ bug_templates = [
 exclude_templates.extend(trash_templates)
 exclude_templates.extend(bug_templates)
 
-exclude_item_templates = [cv.imread(path, cv.IMREAD_GRAYSCALE) for path in item_templates]
-
 item_template = [path for path in item_templates]
 exclude_template = [path for path in exclude_templates]
+
+exclude_item_templates = [cv.imread(path, cv.IMREAD_GRAYSCALE) for path in item_templates]
 
 sct = mss()
 
