@@ -45,7 +45,7 @@ def lootof():
     #cv.imshow('lootofscreen', lootof_screen)
     #cv.imshow('lootof', _lootof)
 
-    _, max_val, _, max_loc = cv.minMaxLoc(_lootof)
+    _, max_val, _, _ = cv.minMaxLoc(_lootof)
     return max_val >= match_threshold
 
 def lootbox():
@@ -57,15 +57,16 @@ def lootbox():
     #cv.imshow('lootbox', _lootbox)
     
     for xitem in exclude_item_templates:
-        xtemplate_result = cv.matchTemplate(_lootbox, xitem, cv.TM_CCOEFF_NORMED)
-        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(xtemplate_result)
+        xitem_color = cv.cvtColor(xitem, cv.COLOR_GRAY2BGR)
+        xtemplate_result = cv.matchTemplate(_lootbox, xitem_color, cv.TM_CCOEFF_NORMED)
+        _, max_val, _, _ = cv.minMaxLoc(xtemplate_result)
         
         if max_val >= match_threshold:
             return None
 
     for item in item_template:
         template_result = cv.matchTemplate(_lootbox, item, cv.TM_CCOEFF_NORMED)
-        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(template_result)
+        _, max_val, _, max_loc = cv.minMaxLoc(template_result)
                 
         if stop_loot:
             return None
@@ -85,7 +86,7 @@ def lootbox():
 
                 for exclude in exclude_template:
                     exclude_result = cv.matchTemplate(item_region, exclude, cv.TM_CCOEFF_NORMED)
-                    exclude_min_val, exclude_max_val, _, _ = cv.minMaxLoc(exclude_result)
+                    _, exclude_max_val, _, _ = cv.minMaxLoc(exclude_result)
 
                     if exclude_max_val >= match_threshold:
                         exclude_match_found = True
