@@ -50,7 +50,7 @@ def lootof():
 
 def lootbox():
     lootbox_screen = np.asarray(sct.grab(monitor2))
-    _lootbox = cv.cvtColor(lootbox_screen, cv.COLOR_BGR2GRAY)
+    _lootbox = lootbox_screen
 
     # debug
     #cv.imshow('lootboxscreen', lootbox_screen)
@@ -58,7 +58,11 @@ def lootbox():
 
     for item in item_template:
         template_result = cv.matchTemplate(_lootbox, item, cv.TM_CCOEFF_NORMED)
-        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(template_result)
+        for xitem in exclude_item_templates:
+            if template_result == xitem:
+                break
+            else:
+                min_val, max_val, min_loc, max_loc = cv.minMaxLoc(template_result)
         
         if stop_loot:
             break
@@ -129,8 +133,10 @@ bug_templates = [
 exclude_templates.extend(trash_templates)
 exclude_templates.extend(bug_templates)
 
-item_template = [cv.imread(path, cv.IMREAD_GRAYSCALE) for path in item_templates]
-exclude_template = [cv.imread(path, cv.IMREAD_GRAYSCALE) for path in exclude_templates]
+exclude_item_templates = [cv.imread(path, cv.IMREAD_GRAYSCALE) for path in item_templates]
+
+item_template = [path for path in item_templates]
+exclude_template = [path for path in exclude_templates]
 
 sct = mss()
 
