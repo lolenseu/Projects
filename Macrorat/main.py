@@ -50,24 +50,16 @@ def lootof():
 
 def lootbox():
     lootbox_screen = np.asarray(sct.grab(monitor2))
-    _lootbox = lootbox_screen
+    _lootbox = cv.cvtColor(lootbox_screen, cv.COLOR_BGR2GRAY)
 
     # debug
     #cv.imshow('lootboxscreen', lootbox_screen)
     #cv.imshow('lootbox', _lootbox)
-    
-    for xitem in exclude_item_templates:
-        xitem_color = cv.cvtColor(xitem, cv.COLOR_GRAY2BGR)
-        xtemplate_result = cv.matchTemplate(_lootbox, xitem_color, cv.TM_CCOEFF_NORMED)
-        _, max_val, _, _ = cv.minMaxLoc(xtemplate_result)
-        
-        if max_val >= match_threshold:
-            return None
 
     for item in item_template:
         template_result = cv.matchTemplate(_lootbox, item, cv.TM_CCOEFF_NORMED)
         _, max_val, _, max_loc = cv.minMaxLoc(template_result)
-                
+        
         if stop_loot:
             return None
 
@@ -90,7 +82,7 @@ def lootbox():
 
                     if exclude_max_val >= match_threshold:
                         exclude_match_found = True
-                        return None
+                        break
 
                 if not exclude_match_found:
                     x, y = monitor2['left'] + item_x, monitor2['top'] + item_y
@@ -137,10 +129,8 @@ bug_templates = [
 exclude_templates.extend(trash_templates)
 exclude_templates.extend(bug_templates)
 
-item_template = [path for path in item_templates]
-exclude_template = [path for path in exclude_templates]
-
-exclude_item_templates = [cv.imread(path, cv.IMREAD_GRAYSCALE) for path in item_templates]
+item_template = [cv.imread(path, cv.IMREAD_GRAYSCALE) for path in item_templates]
+exclude_template = [cv.imread(path, cv.IMREAD_GRAYSCALE) for path in exclude_templates]
 
 sct = mss()
 
