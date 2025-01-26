@@ -10,10 +10,8 @@ from pynput.mouse import Button, Controller as MouseController, Listener as Mous
 from pynput.keyboard import Key, Controller as KeyboardController, Listener as KeyboardListener
 
 
-# Set affinity to all cores
-total_cores = os.cpu_count()
-all_cores = set(range(total_cores))
-os.sched_setaffinity(0, all_cores)
+# Set affinity to core 0
+os.sched_setaffinity(0, {0})
 
 
 # Variables
@@ -38,11 +36,12 @@ exclude_templates = [
     'img/exclude/t5_swiftclaw.png', 'img/exclude/t6_wolf.png'
 ]
 trash_templates = [
-    'img/trash/empty.png', 'img/trash/t1_trash.png', 'img/trash/t2_trash.png', 'img/trash/t3_trash.png', 'img/trash/t4_trash.png',
+    'img/trash/empty.png',
+    'img/trash/t1_trash.png', 'img/trash/t2_trash.png', 'img/trash/t3_trash.png', 'img/trash/t4_trash.png',
     'img/trash/t5_trash.png', 'img/trash/t6_trash.png', 'img/trash/t7_trash.png', 'img/trash/t8_trash.png'
 ]
 bug_templates = [
-    'img/bug/bug1.png', 'img/bug/bug2.png'
+    'img/bug/bug_1.png', 'img/bug/bug_2.png', 'img/bug/bug_3.png', 'img/bug/bug_4.png', 'img/bug/bug_5.png'
 ]
 
 item_templates.reverse()
